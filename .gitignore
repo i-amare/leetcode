@@ -1,0 +1,5 @@
+# tests
+tests/
+
+# vs code specific
+.vscode
