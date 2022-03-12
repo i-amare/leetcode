@@ -14,56 +14,28 @@ class ListNode {
  * @param l2 The second linked list
  * @returns A linked list containing the sum of the two lists
  */
-function addTwoNumbers(l1: ListNode, l2: ListNode): ListNode | null {
-	// Stores value of linked-list in string
-	let arrL1 = listToArray(l1);
-	let arrL2 = listToArray(l2);
+function addTwoNumbers(
+	l1: ListNode | null,
+	l2: ListNode | null
+): ListNode | null {
+	let l3: ListNode = new ListNode(0);
+	let temp: ListNode = l3;
 
-	// Gets the results of adding both values
-	let arrL3: Array<number> = [];
 	let carry = 0;
-	for (let i = 0; i < Math.max(arrL1.length, arrL2.length); i++) {
-		let n1 = arrL1[i] | 0;
-		let n2 = arrL2[i] | 0;
+	while (l1 || l2) {
+		let n1 = l1 ? l1.val : 0;
+		let n2 = l2 ? l2.val : 0;
 		let ans = (n1 + n2 + carry) % 10;
 		carry = Math.floor((n1 + n2 + carry) / 10);
-		arrL3.push(ans);
+
+		temp.next = new ListNode(ans);
+		temp = temp.next;
+
+		l1 = l1 ? l1.next : null;
+		l2 = l2 ? l2.next : null;
 	}
 	if (carry) {
-		arrL3.push(carry);
+		temp.next = new ListNode(carry);
 	}
-
-	// Converts ans to linked list
-	let l3 = arraytoList(arrL3);
-	return l3;
-}
-
-/**
- * Converts linked-list to number array
- * @param linkedList A linked list containing a positive numeric value
- * @returns A array containing the same numeric value
- */
-function listToArray(linkedList: ListNode): Array<number> {
-	let arrList: Array<number> = [];
-	while (true) {
-		arrList.push(linkedList.val);
-		if (linkedList.next === null) {
-			break;
-		}
-		linkedList = linkedList.next;
-	}
-	return arrList;
-}
-
-/**
- * Converts array to linked list
- * @param arr Array representing a numeric value
- * @returns Singly-linked list that contains the same numeric value
- */
-function arraytoList(arr: Array<number>): ListNode {
-	let list = new ListNode(arr[arr.length - 1]);
-	for (let i = arr.length - 2; i >= 0; i--) {
-		list = new ListNode(arr[i], list);
-	}
-	return list;
+	return l3.next;
 }
