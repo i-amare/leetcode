@@ -4,7 +4,4 @@ function reverseString(s: string[]): void {
 		s[i] = s[s.length - i - 1];
 		s[s.length - i - 1] = temp;
 	}
-	console.log(s);
 }
-
-reverseString(["h", "e", "l", "l", "o", "o"]);
