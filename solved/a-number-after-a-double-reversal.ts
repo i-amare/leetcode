@@ -1,10 +1,9 @@
 // Given an integer num, reverse num to get reversed1, then reverse reversed1 to get reversed2. Return true if reversed2 equals num. Otherwise return false.
-
 function isSameAfterReversals(num: number): boolean {
 	if (num === 0) return true;
-
+	
 	// Initiate variables
-	let strNum: string = num + '';
+	const strNum: string = num + '';
 	let strRev1: string = '',
 		strRev2: string = '';
 
@@ -44,5 +43,3 @@ function removeLeadingZeros(strNum: string): string {
 	}
 	return strNum;
 }
-
-isSameAfterReversals(120000000001);
