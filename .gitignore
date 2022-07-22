@@ -1,5 +1,8 @@
 # tests
 tests/
 
+# any solutions still in progress
+unsolved/
+
 # vs code specific
 .vscode
