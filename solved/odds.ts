@@ -1,38 +1,28 @@
-let runs = 100000;
+let runs = 1000000;
 let result = {};
 let numConsecutive = 0;
 
-function generateRoll(numDice: number = 1) {
+
+function checkConsecutive() {
+
 	let roll: number[] = [];
-	for (let i = 0; i < numDice; i++) {
+	for (let i = 0; i < 3; i++) {
 		roll.push(Math.floor(Math.random() * 6) + 1);
 	}
-	return roll;
-}
+	
+	let max = Math.max(roll[0], Math.max(roll[1], roll[2]));
+	let min = Math.min(roll[0], Math.min(roll[1], roll[2]));
 
-function checkConsecutive(roll: number[]) {
-	// sorts roll
-	for (let i = 0; i < roll.length - 1; i++) {
-		for (let j = i + 1; j < roll.length; j++) {
-			if (roll[i] > roll[j]) {
-				let temp = roll[i];
-				roll[i] = roll[j];
-				roll[j] = temp;
-			}
-		}
-	}
+	if (max - min != 2) return false;
+	if (roll[0] == roll[1] || roll[0] == roll[2] || roll[1] == roll[2])
+		return false;
 
-	for (let i = 0; i < roll.length - 1; i++) {
-		if (!(roll[i + 1] - roll[i] == 1)) {
-			return false;
-		}
-	}
 	console.log(roll);
 	return true;
 }
 
 for (let i = 0; i < runs; i++) {
-	if (checkConsecutive(generateRoll(3))) {
+	if (checkConsecutive()) {
 		numConsecutive++;
 	}
 }
