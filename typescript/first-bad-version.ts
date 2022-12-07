@@ -6,6 +6,7 @@
  */
 
 const solution = function (isBadVersion: any) {
+	//@ts-ignore: leetcode API handles badVersion API calls
 	return function (n: number): number {
 		let left = 0;
 		let right = n;
