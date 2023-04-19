@@ -35,5 +35,3 @@ function hasDuplicates(arr: string[]): boolean {
 	
 	return false
 }
-
-Number.

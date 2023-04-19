@@ -15,5 +15,3 @@ function topKFrequent(nums: number[], k: number): number[] {
 	}
 	return out;
 }
-
-console.log(topKFrequent([2, 2, A3, 4, 5, 5, 5], 2));

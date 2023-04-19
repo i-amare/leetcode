@@ -6,3 +6,4 @@ unsolved/
 
 # vs code specific
 .vscode
+typescript/TreeNode.ts
