@@ -1,7 +1,7 @@
 function threeSum(nums: number[]): number[][] {
 	const solutions: number[][] = new Array();
 
-	nums = nums.sort();
+	nums = nums.sort((a, b) => a - b);
 
 	for (let i = 0; i < nums.length; i++) {
 		const prevNum = i > 0 ? nums[i - 1] : -Infinity;
