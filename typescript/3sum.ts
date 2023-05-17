@@ -13,11 +13,10 @@ function threeSum(nums: number[]): number[][] {
 		let right = nums.length - 1;
 		while (left < right) {
 			const sum = num + nums[left] + nums[right];
-			console.log(i);
 			if (sum == 0) {
 				solutions.push([nums[i], nums[left], nums[right]]);
 				left++;
-				while (nums[l] == nums[l - 1] && l < r) {
+				while (nums[left] == nums[left - 1] && left < right) {
 					left += 1;
 				}
 			} else if (sum > 0) {
