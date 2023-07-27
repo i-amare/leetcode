@@ -21,23 +21,15 @@ function mergeTwoLists(
 	list1: ListNode | null,
 	list2: ListNode | null
 ): ListNode | null {
-	const merged = new ListNode();
-	let temp = merged;
+	if (list1 == null) return list2;
+	if (list2 == null) return list1;
 
-	while (list1 != null && list2 != null) {
-		if (list1.val <= list2.val) {
-			temp.next = list1;
-			list1 = list1.next;
-		} else {
-			temp.next = list2;
-			list2 = list2.next;
-		}
-		temp = temp.next;
+	if (list1.val < list2.val) {
+		list1.next = mergeTwoLists(list1.next, list2);
+		return list1;
+	} else {
+		list2.next = mergeTwoLists(list1, list2.next);
+		return list2;
 	}
-
-	if (list1 == null) temp.next = list2;
-	if (list2 == null) temp.next = list1;
-
-	return merged.next;
 }
 // @lc code=end
