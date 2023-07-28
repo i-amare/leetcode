@@ -24,9 +24,9 @@ function reverseList(head: ListNode | null): ListNode | null {
 		let temp = head.next;
 		head.next = prev;
 		prev = head;
-		head = temp
+		head = temp;
 	}
-	
+
 	return prev;
 }
 // @lc code=end
