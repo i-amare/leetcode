@@ -21,15 +21,24 @@ function mergeTwoLists(
 	list1: ListNode | null,
 	list2: ListNode | null
 ): ListNode | null {
-	if (list1 == null) return list2;
-	if (list2 == null) return list1;
+	let res: ListNode | null = new ListNode();
+	let pointer: ListNode | null = res;
 
-	if (list1.val < list2.val) {
-		list1.next = mergeTwoLists(list1.next, list2);
-		return list1;
-	} else {
-		list2.next = mergeTwoLists(list1, list2.next);
-		return list2;
+	function helper(l1: ListNode | null, l2: ListNode | null) {
+		if (!l1) pointer.next = l2;
+		else if (!l2) pointer.next = l1;
+		else if (l1.val <= l2.val) {
+			pointer.next = l1;
+			pointer = pointer.next;
+			helper(l1.next, l2);
+		} else {
+			pointer.next = l2;
+			pointer = pointer.next;
+			helper(l2.next, l1);
+		}
 	}
+	helper(list1, list2);
+
+	return res.next;
 }
 // @lc code=end
