@@ -18,33 +18,23 @@
  */
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
-  // Flatten list
-  const head = new ListNode();
-  let ptr = head;
-  for (const list of lists) {
-    if (list == null) continue;
-    ptr.next = list;
-    while (ptr.next) ptr = ptr.next;
-  }
+  let sortedList = new ListNode();
+  let ptr: ListNode | null = sortedList;
 
-  // Run bubble sort
-  let sorted = false
-  while (!sorted) {
-    sorted = true
-    let prev = head;
-    let curr = head.next;
-    while (curr?.next) {
-      if (curr.val > curr.next.val) {
-        prev.next = curr.next;
-        curr.next = prev.next.next;
-        prev.next.next = curr;
-        sorted = false
-      }
-      prev = curr;
-      curr = curr.next
+  while (true) {
+    let minIdx = -1;
+    for (let i = 0; i < lists.length; i++) {
+      if (lists[i] == null) continue;
+      if (lists[i].val < (minIdx > -1 ? lists[minIdx].val : Infinity)) minIdx = i;
     }
+
+    if (minIdx == -1) break;
+
+    ptr.next = lists[minIdx];
+    ptr = ptr.next;
+    lists[minIdx] = lists[minIdx].next;
   }
 
-  return head.next;
+  return sortedList.next;
 }
 // @lc code=end
