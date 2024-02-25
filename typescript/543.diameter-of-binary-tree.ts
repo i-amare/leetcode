@@ -20,18 +20,20 @@
  */
 
 function diameterOfBinaryTree(root: TreeNode | null): number {
-	let res = 0;
+	let maxDiameter = 0;
 
 	(function search(root: TreeNode | null) {
 		if (!root) return -1;
 		const left = search(root.left);
 		const right = search(root.right);
 
-		res = Math.max(res, left + right + 2);
+		const diameter = left + right + 2;
+		maxDiameter = Math.max(maxDiameter, diameter);
 
-		return 1 + Math.max(left, right);
+		const height = Math.max(left, right) + 1;
+		return height;
 	})(root);
 
-	return res;
+	return maxDiameter;
 }
 // @lc code=end
