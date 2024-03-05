@@ -20,19 +20,16 @@
  */
 
 function isSubtree(root: TreeNode | null, subRoot: TreeNode | null): boolean {
-	let res = false;
-
-	(function loop(curr: TreeNode | null) {
-		if (!curr) return;
-		if (isSameTree(curr, subRoot)) {
-			res = true;
-			return;
-		}
-		loop(curr.left);
-		loop(curr.right);
-	})(root);
-
-	return res;
+	return (
+		(function loop(curr: TreeNode | null) {
+			if (!curr) return;
+			if (isSameTree(curr, subRoot)) {
+				return true;
+			}
+			loop(curr.left);
+			loop(curr.right);
+		})(root) || false
+	);
 }
 
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
